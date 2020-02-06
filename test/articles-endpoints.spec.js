@@ -1,7 +1,7 @@
 const knex = require('knex')
 const app = require('../src/app')
 const { makeArticlesArray, makeMaliciousArticle } = require('./articles.fixtures')
-const { makeUsersArray } = require('./users.fixtures')
+const { makeUsersArray } = require('../src/users/users.fixtures');
 
 describe('Articles Endpoints', function() {
   let db
@@ -62,10 +62,10 @@ describe('Articles Endpoints', function() {
           .into('blogful_users')
           .insert(testUsers)
           .then(() => {
-            return db
+            return db 
               .into('blogful_articles')
               .insert([ maliciousArticle ])
-          })
+          })  
       })
 
       it('removes XSS attack content', () => {
